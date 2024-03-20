@@ -6,6 +6,66 @@ import { LazyLoading, LazyLoadingDisabled, AsyncCollection, AsyncItem } from "@a
 
 
 
+type EagerJobApplication = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<JobApplication, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly Name?: string | null;
+  readonly CoverLetter?: string | null;
+  readonly Role?: string | null;
+  readonly Town?: string | null;
+  readonly DOB?: string | null;
+  readonly Email?: string | null;
+  readonly Telephone?: string | null;
+  readonly PreviousExprience?: string | null;
+  readonly CV?: string | null;
+  readonly Age?: string | null;
+  readonly Interviewed?: boolean | null;
+  readonly InterviewNotes?: string | null;
+  readonly Offered?: boolean | null;
+  readonly InterviewTime?: string | null;
+  readonly InterviewDate?: string | null;
+  readonly InterviewSet?: boolean | null;
+  readonly NotInterested?: boolean | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyJobApplication = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<JobApplication, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly Name?: string | null;
+  readonly CoverLetter?: string | null;
+  readonly Role?: string | null;
+  readonly Town?: string | null;
+  readonly DOB?: string | null;
+  readonly Email?: string | null;
+  readonly Telephone?: string | null;
+  readonly PreviousExprience?: string | null;
+  readonly CV?: string | null;
+  readonly Age?: string | null;
+  readonly Interviewed?: boolean | null;
+  readonly InterviewNotes?: string | null;
+  readonly Offered?: boolean | null;
+  readonly InterviewTime?: string | null;
+  readonly InterviewDate?: string | null;
+  readonly InterviewSet?: boolean | null;
+  readonly NotInterested?: boolean | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type JobApplication = LazyLoading extends LazyLoadingDisabled ? EagerJobApplication : LazyJobApplication
+
+export declare const JobApplication: (new (init: ModelInit<JobApplication>) => JobApplication) & {
+  copyOf(source: JobApplication, mutator: (draft: MutableModel<JobApplication>) => MutableModel<JobApplication> | void): JobApplication;
+}
+
 type EagerBeautyInPlay = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<BeautyInPlay, 'id'>;
@@ -61,6 +121,7 @@ type EagerHomeCookedCollection = {
   readonly Email?: string | null;
   readonly Telephone?: string | null;
   readonly Prepaid?: boolean | null;
+  readonly PaymentAuth?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -86,6 +147,7 @@ type LazyHomeCookedCollection = {
   readonly Email?: string | null;
   readonly Telephone?: string | null;
   readonly Prepaid?: boolean | null;
+  readonly PaymentAuth?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -120,6 +182,7 @@ type EagerEvents = {
   readonly TicketsSold?: number | null;
   readonly CalibrateStock?: boolean | null;
   readonly Total?: number | null;
+  readonly PaymentAuth?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -148,6 +211,7 @@ type LazyEvents = {
   readonly TicketsSold?: number | null;
   readonly CalibrateStock?: boolean | null;
   readonly Total?: number | null;
+  readonly PaymentAuth?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -631,6 +695,9 @@ type EagerStaff = {
   readonly EndDate?: string | null;
   readonly Age?: string | null;
   readonly DOB?: string | null;
+  readonly InterviewNotes?: string | null;
+  readonly Medical?: string | null;
+  readonly ApplicationID?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -654,6 +721,9 @@ type LazyStaff = {
   readonly EndDate?: string | null;
   readonly Age?: string | null;
   readonly DOB?: string | null;
+  readonly InterviewNotes?: string | null;
+  readonly Medical?: string | null;
+  readonly ApplicationID?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -694,6 +764,7 @@ type EagerSessions = {
   readonly Event?: boolean | null;
   readonly EventID?: string | null;
   readonly EventName?: string | null;
+  readonly PaymentAuth?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -728,6 +799,7 @@ type LazySessions = {
   readonly Event?: boolean | null;
   readonly EventID?: string | null;
   readonly EventName?: string | null;
+  readonly PaymentAuth?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -766,6 +838,7 @@ type EagerCafeOrder = {
   readonly SessionEmail?: string | null;
   readonly EventID?: string | null;
   readonly Event?: boolean | null;
+  readonly PaymentAuth?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -798,6 +871,7 @@ type LazyCafeOrder = {
   readonly SessionEmail?: string | null;
   readonly EventID?: string | null;
   readonly Event?: boolean | null;
+  readonly PaymentAuth?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -964,6 +1038,8 @@ type EagerPartyBooking = {
   readonly Email?: string | null;
   readonly Telephone?: string | null;
   readonly CalibrateStock?: boolean | null;
+  readonly Payments?: (string | null)[] | null;
+  readonly Utd?: boolean | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -1004,6 +1080,8 @@ type LazyPartyBooking = {
   readonly Email?: string | null;
   readonly Telephone?: string | null;
   readonly CalibrateStock?: boolean | null;
+  readonly Payments?: (string | null)[] | null;
+  readonly Utd?: boolean | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

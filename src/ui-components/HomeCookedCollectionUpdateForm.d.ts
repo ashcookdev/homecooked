@@ -38,6 +38,7 @@ export declare type HomeCookedCollectionUpdateFormInputValues = {
     Email?: string;
     Telephone?: string;
     Prepaid?: boolean;
+    PaymentAuth?: string;
 };
 export declare type HomeCookedCollectionUpdateFormValidationValues = {
     CreatedTime?: ValidationFunction<string>;
@@ -55,6 +56,7 @@ export declare type HomeCookedCollectionUpdateFormValidationValues = {
     Email?: ValidationFunction<string>;
     Telephone?: ValidationFunction<string>;
     Prepaid?: ValidationFunction<boolean>;
+    PaymentAuth?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type HomeCookedCollectionUpdateFormOverridesProps = {
@@ -74,6 +76,7 @@ export declare type HomeCookedCollectionUpdateFormOverridesProps = {
     Email?: PrimitiveOverrideProps<TextFieldProps>;
     Telephone?: PrimitiveOverrideProps<TextFieldProps>;
     Prepaid?: PrimitiveOverrideProps<SwitchFieldProps>;
+    PaymentAuth?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type HomeCookedCollectionUpdateFormProps = React.PropsWithChildren<{
     overrides?: HomeCookedCollectionUpdateFormOverridesProps | undefined | null;

@@ -205,6 +205,7 @@ export default function HomeCookedCollectionUpdateForm(props) {
     Email: "",
     Telephone: "",
     Prepaid: false,
+    PaymentAuth: "",
   };
   const [CreatedTime, setCreatedTime] = React.useState(
     initialValues.CreatedTime
@@ -229,6 +230,9 @@ export default function HomeCookedCollectionUpdateForm(props) {
   const [Email, setEmail] = React.useState(initialValues.Email);
   const [Telephone, setTelephone] = React.useState(initialValues.Telephone);
   const [Prepaid, setPrepaid] = React.useState(initialValues.Prepaid);
+  const [PaymentAuth, setPaymentAuth] = React.useState(
+    initialValues.PaymentAuth
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = homeCookedCollectionRecord
@@ -252,6 +256,7 @@ export default function HomeCookedCollectionUpdateForm(props) {
     setEmail(cleanValues.Email);
     setTelephone(cleanValues.Telephone);
     setPrepaid(cleanValues.Prepaid);
+    setPaymentAuth(cleanValues.PaymentAuth);
     setErrors({});
   };
   const [homeCookedCollectionRecord, setHomeCookedCollectionRecord] =
@@ -290,6 +295,7 @@ export default function HomeCookedCollectionUpdateForm(props) {
     Email: [],
     Telephone: [],
     Prepaid: [],
+    PaymentAuth: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -332,6 +338,7 @@ export default function HomeCookedCollectionUpdateForm(props) {
           Email,
           Telephone,
           Prepaid,
+          PaymentAuth,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -406,6 +413,7 @@ export default function HomeCookedCollectionUpdateForm(props) {
               Email,
               Telephone,
               Prepaid,
+              PaymentAuth,
             };
             const result = onChange(modelFields);
             value = result?.CreatedTime ?? value;
@@ -445,6 +453,7 @@ export default function HomeCookedCollectionUpdateForm(props) {
               Email,
               Telephone,
               Prepaid,
+              PaymentAuth,
             };
             const result = onChange(modelFields);
             value = result?.CreatedDate ?? value;
@@ -487,6 +496,7 @@ export default function HomeCookedCollectionUpdateForm(props) {
               Email,
               Telephone,
               Prepaid,
+              PaymentAuth,
             };
             const result = onChange(modelFields);
             value = result?.Total ?? value;
@@ -521,6 +531,7 @@ export default function HomeCookedCollectionUpdateForm(props) {
               Email,
               Telephone,
               Prepaid,
+              PaymentAuth,
             };
             const result = onChange(modelFields);
             values = result?.DrinkItems ?? values;
@@ -582,6 +593,7 @@ export default function HomeCookedCollectionUpdateForm(props) {
               Email,
               Telephone,
               Prepaid,
+              PaymentAuth,
             };
             const result = onChange(modelFields);
             values = result?.HotItems ?? values;
@@ -646,6 +658,7 @@ export default function HomeCookedCollectionUpdateForm(props) {
               Email,
               Telephone,
               Prepaid,
+              PaymentAuth,
             };
             const result = onChange(modelFields);
             value = result?.CollectionTime ?? value;
@@ -684,6 +697,7 @@ export default function HomeCookedCollectionUpdateForm(props) {
               Email,
               Telephone,
               Prepaid,
+              PaymentAuth,
             };
             const result = onChange(modelFields);
             value = result?.Completed ?? value;
@@ -722,6 +736,7 @@ export default function HomeCookedCollectionUpdateForm(props) {
               Email,
               Telephone,
               Prepaid,
+              PaymentAuth,
             };
             const result = onChange(modelFields);
             value = result?.Delieved ?? value;
@@ -760,6 +775,7 @@ export default function HomeCookedCollectionUpdateForm(props) {
               Email,
               Telephone,
               Prepaid,
+              PaymentAuth,
             };
             const result = onChange(modelFields);
             value = result?.Name ?? value;
@@ -798,6 +814,7 @@ export default function HomeCookedCollectionUpdateForm(props) {
               Email,
               Telephone,
               Prepaid,
+              PaymentAuth,
             };
             const result = onChange(modelFields);
             value = result?.Notes ?? value;
@@ -836,6 +853,7 @@ export default function HomeCookedCollectionUpdateForm(props) {
               Email,
               Telephone,
               Prepaid,
+              PaymentAuth,
             };
             const result = onChange(modelFields);
             value = result?.Kitchen ?? value;
@@ -870,6 +888,7 @@ export default function HomeCookedCollectionUpdateForm(props) {
               Email,
               Telephone,
               Prepaid,
+              PaymentAuth,
             };
             const result = onChange(modelFields);
             values = result?.KitchenMenuId ?? values;
@@ -935,6 +954,7 @@ export default function HomeCookedCollectionUpdateForm(props) {
               Email: value,
               Telephone,
               Prepaid,
+              PaymentAuth,
             };
             const result = onChange(modelFields);
             value = result?.Email ?? value;
@@ -973,6 +993,7 @@ export default function HomeCookedCollectionUpdateForm(props) {
               Email,
               Telephone: value,
               Prepaid,
+              PaymentAuth,
             };
             const result = onChange(modelFields);
             value = result?.Telephone ?? value;
@@ -1011,6 +1032,7 @@ export default function HomeCookedCollectionUpdateForm(props) {
               Email,
               Telephone,
               Prepaid: value,
+              PaymentAuth,
             };
             const result = onChange(modelFields);
             value = result?.Prepaid ?? value;
@@ -1025,6 +1047,45 @@ export default function HomeCookedCollectionUpdateForm(props) {
         hasError={errors.Prepaid?.hasError}
         {...getOverrideProps(overrides, "Prepaid")}
       ></SwitchField>
+      <TextField
+        label="Payment auth"
+        isRequired={false}
+        isReadOnly={false}
+        value={PaymentAuth}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              CreatedTime,
+              CreatedDate,
+              Total,
+              DrinkItems,
+              HotItems,
+              CollectionTime,
+              Completed,
+              Delieved,
+              Name,
+              Notes,
+              Kitchen,
+              KitchenMenuId,
+              Email,
+              Telephone,
+              Prepaid,
+              PaymentAuth: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.PaymentAuth ?? value;
+          }
+          if (errors.PaymentAuth?.hasError) {
+            runValidationTasks("PaymentAuth", value);
+          }
+          setPaymentAuth(value);
+        }}
+        onBlur={() => runValidationTasks("PaymentAuth", PaymentAuth)}
+        errorMessage={errors.PaymentAuth?.errorMessage}
+        hasError={errors.PaymentAuth?.hasError}
+        {...getOverrideProps(overrides, "PaymentAuth")}
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

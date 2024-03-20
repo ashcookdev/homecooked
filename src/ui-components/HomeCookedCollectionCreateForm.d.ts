@@ -37,6 +37,7 @@ export declare type HomeCookedCollectionCreateFormInputValues = {
     Email?: string;
     Telephone?: string;
     Prepaid?: boolean;
+    PaymentAuth?: string;
 };
 export declare type HomeCookedCollectionCreateFormValidationValues = {
     CreatedTime?: ValidationFunction<string>;
@@ -54,6 +55,7 @@ export declare type HomeCookedCollectionCreateFormValidationValues = {
     Email?: ValidationFunction<string>;
     Telephone?: ValidationFunction<string>;
     Prepaid?: ValidationFunction<boolean>;
+    PaymentAuth?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type HomeCookedCollectionCreateFormOverridesProps = {
@@ -73,6 +75,7 @@ export declare type HomeCookedCollectionCreateFormOverridesProps = {
     Email?: PrimitiveOverrideProps<TextFieldProps>;
     Telephone?: PrimitiveOverrideProps<TextFieldProps>;
     Prepaid?: PrimitiveOverrideProps<SwitchFieldProps>;
+    PaymentAuth?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type HomeCookedCollectionCreateFormProps = React.PropsWithChildren<{
     overrides?: HomeCookedCollectionCreateFormOverridesProps | undefined | null;

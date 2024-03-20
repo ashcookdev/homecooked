@@ -153,12 +153,28 @@ function handleAddToOrder(item) {
   setSelectedItems([...selectedItems, newItem]);
 };
 
-const handleExtras = (item) => {
-  console.log('Item:', item);
-  const newItems = [...selectedItems];
-  newItems.push(item);
-  setSelectedItems(newItems);
-  setExtras(false);
+const handleExtras = (extra) => {
+  console.log('Extra:', extra);
+
+  // Check if the extra is already selected
+  const isExtraSelected = selectedItems.some((item) => item.name === extra.name);
+
+  // If the price is 0.00 and the extra is not already selected, allow the first click
+  if (extra.price === 0 && !isExtraSelected) {
+    const newItems = [...selectedItems];
+    newItems.push(extra);
+    setSelectedItems(newItems);
+    setExtras(false); // Set extras to false after the first click
+  } else if (extra.price === 0 && isExtraSelected) {
+    // If the price is 0.00 and the extra is already selected, set extras to false
+    setExtras(false);
+  } else {
+    // For extras with a price greater than 0, allow multiple selections
+    const newItems = [...selectedItems];
+    newItems.push(extra);
+    setSelectedItems(newItems);
+    setExtras(true); // Set extras to true for further selections
+  }
 };
 
 
@@ -351,8 +367,10 @@ try {
 
                   </div>
                   <Tab.Panels as={Fragment}>
-                  {categories && categories.map((category) => (
-    <Tab.Panel key={category.name} className="space-y-12 px-4 py-6">
+                  {categories && categories
+  .filter(category => !['Extras', 'Event'].includes(category.name))
+  .sort((a, b) => a.name.localeCompare(b.name))
+  .map((category) => (    <Tab.Panel key={category.name} className="space-y-12 px-4 py-6">
       <div className="grid grid-cols-2 gap-x-4 gap-y-10">
         {category && category.menus && category.menus.map((menu) => (
               <div key={menu.id} className="group relative">
@@ -365,6 +383,24 @@ try {
                 <p className="mt-1 block text-xs font-medium text-gray-500">
                   {menu.Description}
                 </p>
+                {extras && 
+<p className="mt-1 block text-sm font-bold text-blue-500">
+  Additional Extras
+</p>
+}
+      {extras && menu.Extras && menu.Extras.map((extra, index) => (
+          
+        <button onClick={() => handleExtras(extra)}
+          key={index}
+          type="button"
+          className="rounded bg-indigo-50 px-2 py-1 text-xs font-semibold text-red-600 shadow-sm hover:bg-indigo-100 mt-2"
+        >
+          {extra.name} £{extra.price.toFixed(2)}
+        </button>
+
+        
+      ))}
+
                 <button
                   onClick={() => handleAddToOrder(menu)}
                   type="button"
@@ -373,6 +409,7 @@ try {
                   Add To Order £{menu.Price.toFixed(2)}
                 </button>
               </div>
+
             ))}
           </div>
         </Tab.Panel>
@@ -410,6 +447,7 @@ try {
   <a href="/orders" className="mr-2 text-white font-medium hover:text-yellow-300 transition-colors">
     My Orders
   </a>
+  
 
   {/* Top navigation */}
   {isLoggedIn ? (
@@ -427,6 +465,13 @@ try {
       Log in
     </button>
   )}
+   <div className="ml-4 flow-root lg:ml-8">
+                          <a href="#" className="group -m-2 flex items-center p-2">
+                            <ShoppingBagIcon className="h-6 w-6 flex-shrink-0 text-white" aria-hidden="true" />
+                            <span className="ml-2 text-sm font-medium text-white">{selectedItems.length}</span>
+                            <span className="sr-only">items in cart, view bag</span>
+                          </a>
+                        </div>
 </div>
 
 
@@ -581,13 +626,7 @@ try {
                         
                        
 
-                        <div className="ml-4 flow-root lg:ml-8">
-                          <a href="#" className="group -m-2 flex items-center p-2">
-                            <ShoppingBagIcon className="h-6 w-6 flex-shrink-0 text-white" aria-hidden="true" />
-                            <span className="ml-2 text-sm font-medium text-white">{selectedItems.length}</span>
-                            <span className="sr-only">items in cart, view bag</span>
-                          </a>
-                        </div>
+                       
                       </div>
                     </div>
                   </div>
